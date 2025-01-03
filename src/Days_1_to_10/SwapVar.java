@@ -26,7 +26,6 @@ public class SwapVar
         d = c ^ d ; // 1 ^ 9 = 1000 in binary , which is equal to 8 in numeric so , b = 8 now
         c = c ^ d ; // 1 ^ 8 = 1001 in binary , which is equal to 9 in numeric so , a = 9 now
 
-
         System.out.println("After Swap :- " + "c = "+ c + ","+ "d = " + d);
 
 
