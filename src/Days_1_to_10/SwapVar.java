@@ -22,9 +22,9 @@ public class SwapVar
         System.out.println("Before Swap :- " + "c = "+ c + ","+ "d = " + d);
         // Approach 2 :- Using BITWISE XOR
 
-        c = c ^ d ; // 8 ^ 9 = 0001 in binary , which is equal to 1 in numeric so , a = 1 now
-        d = c ^ d ; // 1 ^ 9 = 1000 in binary , which is equal to 8 in numeric so , b = 8 now
-        c = c ^ d ; // 1 ^ 8 = 1001 in binary , which is equal to 9 in numeric so , a = 9 now
+        c = c ^ d ; // 8 ^ 9 = 0001 in binary , which is equal to 1 in numeric so , c = 1 now
+        d = c ^ d ; // 1 ^ 9 = 1000 in binary , which is equal to 8 in numeric so , d = 8 now
+        c = c ^ d ; // 1 ^ 8 = 1001 in binary , which is equal to 9 in numeric so , c = 9 now
 
         System.out.println("After Swap :- " + "c = "+ c + ","+ "d = " + d);
 
