@@ -1,35 +1,69 @@
 package code100days;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Test {
 
-    public static void printFibonacci(int n){
 
-        if (n<=0){
+public static void rotateArrays(int [] array , int ksize){
 
-            System.out.println("Enter positive number");
-            return ;
-        }
+    int n = array.length ;
 
-        int first = 0;
-        int second = 1;
+    ksize = ksize%n;
 
-        for (int i = 0 ; i <n ;i++){
-            System.out.print(first + " ");
+    //first step - reverse entire array
+    reverseArrays(array , 0,n-1);
 
-            int next = first + second ;
-            first = second ;
-            second = next ;
+    //second step - reverse  array now from start to only ksize-1
+    reverseArrays(array , 0 ,ksize-1 );
 
-        }
-        System.out.println();
+    // third step - reverse remaining portion of array
+    reverseArrays(array,ksize,n-1);
 
-    }
+    System.out.println(Arrays.toString(array));
 
-    public static void main(String[] args) {
-
-        int n = 10;
-        printFibonacci(n);
-
-
-    }
 }
+
+public static void reverseArrays(int [] arrry , int start , int end ){
+
+        while(start<end){
+
+            int temp = arrry[start];
+            arrry[start]= arrry[end];
+            arrry[end]=temp;
+
+            start ++;
+            end --;
+
+        }
+}
+
+
+        public static void main (String[]args){
+
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter size of array ");
+
+            int n = sc.nextInt();
+
+
+
+            int[] arr = new int[n];
+            System.out.println("Enter the elements of the array:");
+            for (int i = 0 ; i <n; i ++){
+
+                arr [i] = sc.nextInt();
+            }
+
+            System.out.println("Enter the no of positions it should shift to right ");
+            int k = sc.nextInt();
+
+          rotateArrays(arr,k);
+
+            sc.close();
+
+
+        }
+    }
+

@@ -1,4 +1,4 @@
-package Days_1_to_10;
+package code100days.Days_1_to_10;
 
 public class SwapVar
 {

@@ -1,5 +1,5 @@
 
-package Days_1_to_10;
+package code100days.Days_1_to_10;
 
 import java.util.Scanner;
 
@@ -26,7 +26,7 @@ public class ArmstrongNumberChecker {
         public static void main (String[]args){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter the desired number:");
+        System.out.println("Enter the number to check whether its an Armstrong or not :");
         int num = sc.nextInt();
 
         // Print whether the number is an Armstrong number
