@@ -1,24 +1,67 @@
 package code100days;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Test {
 
-    public static int findKthSmallest(int [] array , int kth){
+    public static int [] mergeKSortedArrays(int [][] arrays ){
 
-        Arrays.sort(array);
+        if(arrays.length == 0){
 
-        return array[kth-1];
-    }
+            return new int[0];
+        }
 
-    public static int findKthLargest(int [] array , int kth){
+        return mergeHelper(arrays,0 , arrays.length-1);
 
-        Arrays.sort(array);
-
-        return array[array.length-kth];
 
     }
+
+    private static int[] mergeHelper (int [][]arr , int left ,int right){
+
+        if(left==right){
+
+            return arr[left];
+
+        }
+
+        int mid = left + (right-left)/2 ;
+
+
+        int [] leftMerged = mergeHelper(arr,left,mid);
+        int [] rightMerged = mergeHelper(arr,mid+1 ,right);
+
+        return mergeTwoArrays(leftMerged,rightMerged);
+
+    }
+
+    private static int [] mergeTwoArrays (int[] arr1 , int [] arr2){
+
+        int[] result = new int[arr1.length + arr2.length];
+        int i = 0 ,j = 0 , k = 0 ;
+
+        while(i<arr1.length && j <arr2.length){
+
+            result [k++] = arr1[i] < arr2[j] ? arr1[i++] : arr2[j++];
+
+        }
+
+        while(i<arr1.length){
+
+            result [k++] = arr1[i++] ;
+        }
+
+        while(j<arr2.length){
+
+            result [k++] = arr2[j++] ;
+        }
+
+
+        return result ;
+
+
+
+
+
+    }
+
 
 
 
@@ -26,36 +69,17 @@ public class Test {
 
     public static void main (String[]args){
 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter size of array ");
+            int [][] array = { {1,4,6,8},{3,9,15,67},{2,5,7,10,56}};
 
-            int n = sc.nextInt();
+            int[] mergeArray = mergeKSortedArrays(array) ;
 
-            int[] arr = new int[n];
-            System.out.println("Enter array elements ");
-            for (int i = 0 ; i <n ; i ++){
-
-                arr[i] = sc.nextInt();
-
-            }
-            System.out.println("Enter kth number");
-            int k = sc.nextInt();
-
-            // Check if k is within valid bounds
-            if (k > 0 && k <= n) {
-                // Find and print the kth smallest and kth largest elements
-                int kthSmallest = findKthSmallest(arr, k);
-                int kthLargest = findKthLargest(arr, k);
-
-                System.out.println("The " + k + "th smallest element is: " + kthSmallest);
-                System.out.println("The " + k + "th largest element is: " + kthLargest);
-            } else {
-                System.out.println("Invalid value of k. It should be between 1 and " + n);
+        System.out.println("Merged Arrays");
+            for (int num : mergeArray){
+                System.out.print(num + " ");
             }
 
 
 
-            sc.close();
 
 
         }
