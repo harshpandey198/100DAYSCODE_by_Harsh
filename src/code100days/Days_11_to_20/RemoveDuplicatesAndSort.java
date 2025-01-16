@@ -1,9 +1,8 @@
-package code100days;
+package code100days.Days_11_to_20;
 
 import java.util.*;
 
-public class Test {
-
+public class RemoveDuplicatesAndSort {
 
     public static void main (String[]args){
 
@@ -43,5 +42,6 @@ public class Test {
             System.out.print(number + " ");
         }
     }
-    }
 
+
+}
