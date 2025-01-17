@@ -2,46 +2,79 @@ package code100days;
 
 import java.util.*;
 
+
 public class Test {
 
+    public static List<List<String>> groupAnagrams (String[] string){
 
-    public static void main (String[]args){
 
-        // Step 1 : Take input from the user about size of array
+        // HashMap to group strings by their normalized form (key is the normalized form, value is a list of anagrams)
+        Map<String , List<String>>  anagramsGroup = new HashMap<>() ;
+
+        for(String str : string){
+
+            String normalized = normaliseString(str);
+
+
+            anagramsGroup.putIfAbsent(normalized , new ArrayList<>());
+
+            anagramsGroup.get(normalized).add(str);
+
+        }
+
+        ArrayList<List<String>> stri = new ArrayList<>(anagramsGroup.values()) ;
+
+        return stri;
+
+    }
+
+    private static String normaliseString (String strings){
+
+        char[] chars = strings.replaceAll("[^a-zA-Z]", "") // Retain only alphabetic characters
+                .toLowerCase() // Convert all characters to lowercase for case insensitivity
+                .toCharArray() ;
+
+
+        Arrays.sort(chars);
+
+        String st = new String(chars) ;
+
+        return st ;
+
+
+
+    }
+
+    public static void main(String[] args) {
+
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the size of the array");
+
+       // Step1 :- Input no of strings
+        System.out.println("Enter the no of strings");
         int n = sc.nextInt();
+        sc.nextLine();
 
-        // Step 2 : Initialize the input array
-        int[] inputArray = new int[n];
-        System.out.println("Enter the elements of the array:");
 
-        // Step 3 : Populate the array with user provided input
-        for(int i =0 ; i<n ; i ++){
-            inputArray[i] = sc.nextInt();
+        //Step 2 :- Input all the strings values
+
+        String[]  str = new String[n];
+        System.out.println("Enter string values");
+
+        for ( int i = 0 ; i <n ; i++){
+            str[i] = sc.nextLine();
         }
 
-        //Step 4 : Use a HashSet to eliminate duplicate elements
-        // Hashset automatically ensures all elements are unique
-        Set<Integer> uniqueElements = new HashSet<>();
-        for (int num : inputArray){
-            uniqueElements.add(num);
+        // Step 3: Call the groupAnagrams method to group the strings into anagram groups
+        List<List<String>> result = groupAnagrams(str);
+
+        //Step 4 : Print the groupAngrams
+        System.out.println("Grouped Anagrams :" );
+        for(int i = 0 ; i<result.size(); i ++){
+            System.out.println("Group :" + (i+1) + " :" + result.get(i) );
         }
 
-        //Step 5 : Convert the Hashset to a list for further processing.
-        // We need a list to sort the elements because HashSet doesn't maintain order.
-        List<Integer> sortedList = new ArrayList<>(uniqueElements);
+        sc.close();
 
-        //Step 6 : Sort the list in descending order.
-        // Collections.sort() sorts in ascending order by default .
-        // We can use Collections.reverseOrder() to sort in descending order
-        Collections.sort(sortedList, Collections.reverseOrder());
-
-        //Step 7 : Print the resulting array.
-        System.out.println("Array after removing duplicates and sorting in descending order:");
-        for (int number : sortedList){
-            System.out.print(number + " ");
-        }
     }
-    }
-
+}
