@@ -5,7 +5,7 @@ public class GroupAnagrams {
 
     // Method to group strings into anagrams
     public static List<List<String>> groupAnagrams(String[] strings) {
-        // HashMap to group strings by their normalized form (key is the normalized form, value is a list of anagrams)
+        // HashMap to group strings by their normalized form (key is the normalized form, value is a list of anagrams).
         Map<String, List<String>> anagramGroups = new HashMap<>();
 
         // Iterate over each string in the input array

@@ -8,7 +8,7 @@ public class Test {
     public static List<List<String>> groupAnagrams (String[] string){
 
 
-        // HashMap to group strings by their normalized form (key is the normalized form, value is a list of anagrams)
+        // HashMap to group strings by their normalized form (key is the normalized form, value is a list of anagrams).
         Map<String , List<String>>  anagramsGroup = new HashMap<>() ;
 
         for(String str : string){
