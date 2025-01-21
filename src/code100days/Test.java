@@ -4,58 +4,69 @@ import java.util.Scanner;
 
 public class Test {
 
-    public static int findSmallestMissingPositive (int[] nums){
+    public static void rearrangeArray(int[] array){
 
-        int n = nums.length ;
+        int n = array.length;
 
-        // create a boolean array to mark presence of numbers from 1 to n
+        //create new array to store the value
 
-        boolean[] present = new boolean[n+1];
+        int[] temp = new int[n];
+        int index = 0;
 
-     // acknowledge whether the num is present or not
-        for(int num : nums){
-            if(num>0 && num<=n){
-                present[num] = true;
-            }
-        }
+        // keeping negative integers at start
 
-        for (int i = 1 ; i <=n ; i ++){
-            if(!present[i]){
-                return i;
+        for(int nums : array){
+            if(nums<0){
+                temp[index++] = nums;
 
             }
         }
 
-        return n+1;
+        //storing positive value after negative value
+        for(int nums : array){
+            if(nums>0){
+                temp[index++] = nums;
+            }
+        }
+
+        // storing zeroes at last
+        for(int nums : array){
+            if(nums==0){
+                temp[index++] = nums;
+
+            }
+        }
+
+        System.arraycopy(temp,0,array,0,n);
+
 
     }
+
+
 
 
     public static void main(String[] args) {
 
     Scanner sc = new Scanner(System.in);
+        System.out.println("Enter size of array");
 
-        System.out.println("Enter no of elements");
+        int n = sc.nextInt();
 
-        int size = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements inside array");
 
-
-        int[] nums = new int[size];
-
-        System.out.println("Enter each elements ");
-
-        for (int i = 0 ; i < size ; i ++){
-            nums[i] = sc.nextInt();
-
+        for(int i = 0 ; i <n ; i++){
+            arr[i] = sc.nextInt();
         }
 
-        int result = findSmallestMissingPositive(nums);
+        rearrangeArray(arr);
+        System.out.print("Rearranged arrray" );
+       for(int num : arr){
+           System.out.print( num + " ");
+       }
 
-        System.out.println("the missing no is " +result);
 
         sc.close();
-
-
 
     }
 }
