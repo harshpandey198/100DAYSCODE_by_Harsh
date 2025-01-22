@@ -1,72 +1,61 @@
 package code100days;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Test {
 
-    public static void rearrangeArray(int[] array){
+    public static List<String> countDistinctString(String str){
 
-        int n = array.length;
+        // using a hashset to store unique subtrings
+        Set <String> uniquesubstrings = new HashSet<>();
 
-        //create new array to store the value
+        // Step 2 : generate all substrings using nested  loop
 
-        int[] temp = new int[n];
-        int index = 0;
+        for (int i =0 ; i<str.length(); i++){
+            StringBuilder sb = new StringBuilder();
 
-        // keeping negative integers at start
+            for (int j =i ; j<str.length() ; j++){
 
-        for(int nums : array){
-            if(nums<0){
-                temp[index++] = nums;
-
-            }
-        }
-
-        //storing positive value after negative value
-        for(int nums : array){
-            if(nums>0){
-                temp[index++] = nums;
-            }
-        }
-
-        // storing zeroes at last
-        for(int nums : array){
-            if(nums==0){
-                temp[index++] = nums;
+                sb.append(str.charAt(j));
 
             }
+            // Step 3 : adding the substring to the set and that too a unique one
+            uniquesubstrings.add(sb.toString());
+
         }
 
-        System.arraycopy(temp,0,array,0,n);
 
-
+  // cinvert the set to a string and return
+        return  new ArrayList<>(uniquesubstrings);
     }
+
+
 
 
 
 
     public static void main(String[] args) {
 
-    Scanner sc = new Scanner(System.in);
-        System.out.println("Enter size of array");
+            Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        System.out.println("Enter the string");
 
-        int[] arr = new int[n];
-        System.out.println("Enter the elements inside array");
+        String inputString = sc.nextLine();
 
-        for(int i = 0 ; i <n ; i++){
-            arr[i] = sc.nextInt();
+        List<String> result = countDistinctString(inputString);
+
+        // Distinct substrings
+        System.out.println("Distinct substrings");
+        for (String substring : result){
+            System.out.print(substring + " , ");
         }
-
-        rearrangeArray(arr);
-        System.out.print("Rearranged arrray" );
-       for(int num : arr){
-           System.out.print( num + " ");
-       }
-
+        System.out.println(" ");
+        //Result
+        System.out.println("The count of Distinct string is " + result.size());
 
         sc.close();
+
+
 
     }
 }
