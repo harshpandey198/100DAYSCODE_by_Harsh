@@ -4,58 +4,37 @@ import java.util.*;
 
 public class Test {
 
-    public static List<String> countDistinctString(String str){
+    public static void twosum(int[] arr , int tar){
 
-        // using a hashset to store unique subtrings
-        Set <String> uniquesubstrings = new HashSet<>();
 
-        // Step 2 : generate all substrings using nested  loop
+        //Step 1 : Creating a hashmap to store the key value pairs means , the elements and their indices
+       HashMap<Integer , Integer> map = new HashMap<>();
 
-        for (int i =0 ; i<str.length(); i++){
-            StringBuilder sb = new StringBuilder();
+       // Step 2 : Lopp through the array
 
-            for (int j =i ; j<str.length() ; j++){
+        for(int i =0 ; i<arr.length ; i ++){
 
-                sb.append(str.charAt(j));
+            // Step 3 : Calculating the compliment , the number which is used to reach the target value
+            int complement = tar - arr[i];
 
+            //Step 4 :
+            if(map.containsKey(complement)){
+
+                System.out.println("The pair of elements whose sum equals" + tar + " are:  " + arr[map.get(complement)] + " and " + arr[i] + " (indices : " + map.get(complement) + " , "+ i + ")" );
+                return;
             }
-            // Step 3 : adding the substring to the set and that too a unique one
-            uniquesubstrings.add(sb.toString());
+            map.put(arr[i],i);
 
         }
-
-
-  // cinvert the set to a string and return
-        return  new ArrayList<>(uniquesubstrings);
     }
-
-
-
-
-
 
     public static void main(String[] args) {
 
-            Scanner sc = new Scanner(System.in);
+         int [] arrays = {-2,3,4,-6,2};
 
-        System.out.println("Enter the string");
+         int target = -4 ;
 
-        String inputString = sc.nextLine();
-
-        List<String> result = countDistinctString(inputString);
-
-        // Distinct substrings
-        System.out.println("Distinct substrings");
-        for (String substring : result){
-            System.out.print(substring + " , ");
-        }
-        System.out.println(" ");
-        //Result
-        System.out.println("The count of Distinct string is " + result.size());
-
-        sc.close();
-
-
+         twosum(arrays,target);
 
     }
 }
