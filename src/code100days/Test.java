@@ -1,40 +1,39 @@
 package code100days;
 
-import java.util.*;
-
 public class Test {
 
-    public static void twosum(int[] arr , int tar){
+    public static int findPeakindex(int[] arrr){
 
+        int left = 0 ;
+        int right = arrr.length - 1;
 
-        //Step 1 : Creating a hashmap to store the key value pairs means , the elements and their indices
-       HashMap<Integer , Integer> map = new HashMap<>();
+        while(left<right){
 
-       // Step 2 : Lopp through the array
+            int mid = left + (right-left)/2 ;
 
-        for(int i =0 ; i<arr.length ; i ++){
+            if(arrr[mid]<arrr[mid+1]){
+                left = mid +1 ;
 
-            // Step 3 : Calculating the compliment , the number which is used to reach the target value
-            int complement = tar - arr[i];
-
-            //Step 4 :
-            if(map.containsKey(complement)){
-
-                System.out.println("The pair of elements whose sum equals" + tar + " are:  " + arr[map.get(complement)] + " and " + arr[i] + " (indices : " + map.get(complement) + " , "+ i + ")" );
-                return;
             }
-            map.put(arr[i],i);
+            else{
+                right = mid ;
 
+            }
         }
+
+        return left;
+
+
+
     }
 
     public static void main(String[] args) {
 
-         int [] arrays = {-2,3,4,-6,2};
+         int [] arrays = {1,3,4,2,1};
 
-         int target = -4 ;
+         int peakindex = findPeakindex(arrays);
 
-         twosum(arrays,target);
+        System.out.println("Peal element found at index:" + peakindex);
 
     }
 }
