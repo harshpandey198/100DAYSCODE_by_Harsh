@@ -1,39 +1,33 @@
 package code100days;
 
+import java.util.HashMap;
+
 public class Test {
 
-    public static int findPeakindex(int[] arrr){
+    public static int findMajorityElement(int [] n){
 
-        int left = 0 ;
-        int right = arrr.length - 1;
+        HashMap<Integer, Integer> countMap = new HashMap<>();
 
-        while(left<right){
+        for (int num : n){
 
-            int mid = left + (right-left)/2 ;
+            countMap.put(num, countMap.getOrDefault(num,0)+1);
 
-            if(arrr[mid]<arrr[mid+1]){
-                left = mid +1 ;
 
-            }
-            else{
-                right = mid ;
-
+            if(countMap.get(num) > n.length/2){
+                return num ;
             }
         }
-
-        return left;
-
-
+        return -1;
 
     }
 
     public static void main(String[] args) {
 
-         int [] arrays = {1,3,4,2,1};
+         int [] nums = {2,4,3,2,2};
 
-         int peakindex = findPeakindex(arrays);
+         int result = findMajorityElement(nums);
 
-        System.out.println("Peal element found at index:" + peakindex);
+        System.out.println("The Majority element in the array is :" + result);
 
     }
 }
