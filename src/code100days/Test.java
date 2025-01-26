@@ -1,33 +1,40 @@
 package code100days;
 
-import java.util.HashMap;
 
 public class Test {
 
-    public static int findMajorityElement(int [] n){
+    public static Boolean canJump(int[] num){
 
-        HashMap<Integer, Integer> countMap = new HashMap<>();
+        int maxReach = 0 ;
 
-        for (int num : n){
+        for(int i = 0 ; i<num.length ; i++){
 
-            countMap.put(num, countMap.getOrDefault(num,0)+1);
+            if(i>maxReach){
+                return false ;
 
-
-            if(countMap.get(num) > n.length/2){
-                return num ;
             }
-        }
-        return -1;
 
+            maxReach = Math.max(maxReach , i + num[i]);
+
+            if(maxReach>=num.length-1){
+                return true ;
+            }
+
+        }
+        return false ;
     }
+
 
     public static void main(String[] args) {
 
-         int [] nums = {2,4,3,2,2};
+         int [] nums1 = {3,2,1,4};
+        System.out.println("Can jump to last index : " + canJump(nums1));
 
-         int result = findMajorityElement(nums);
 
-        System.out.println("The Majority element in the array is :" + result);
+        int[] nums2 = {3, 2, 1, 0, 4};
+        System.out.println("Can jump to the last index: " + canJump(nums2));
+
+
 
     }
 }
