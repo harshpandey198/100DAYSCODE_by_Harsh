@@ -3,36 +3,37 @@ package code100days;
 
 public class Test {
 
-    public static Boolean canJump(int[] num){
+    public static int maximumProfit(int[] prices){
+        int minPrice = Integer.MAX_VALUE;
 
-        int maxReach = 0 ;
+        int maxProfit = 0 ;
 
-        for(int i = 0 ; i<num.length ; i++){
+        for(int price : prices ){
 
-            if(i>maxReach){
-                return false ;
+            if(price < minPrice){
+                minPrice = price ;
 
             }
 
-            maxReach = Math.max(maxReach , i + num[i]);
+           else{
+                int profit = price - minPrice;
+               maxProfit = Math.max(maxProfit, profit);
 
-            if(maxReach>=num.length-1){
-                return true ;
             }
 
         }
-        return false ;
+        return maxProfit ;
     }
 
 
     public static void main(String[] args) {
 
          int [] nums1 = {3,2,1,4};
-        System.out.println("Can jump to last index : " + canJump(nums1));
+        System.out.println("Maximum Profit: " + maximumProfit(nums1));
 
 
-        int[] nums2 = {3, 2, 1, 0, 4};
-        System.out.println("Can jump to the last index: " + canJump(nums2));
+        int[] nums2 = {3, 2, 1, 0, -2};
+        System.out.println("Maximum Profit: " + maximumProfit(nums2));
 
 
 
